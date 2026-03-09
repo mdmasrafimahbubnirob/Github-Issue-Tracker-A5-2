@@ -15,7 +15,7 @@ document.getElementById("Sign-In-btn").addEventListener("click", function () {
     if(Username == "admin" && password == "admin123"){
         alert("login Success");
 
-        window.location.assign("/home.html")
+        window.location.assign("home.html")
     }
     else{
         alert("login Failed");
