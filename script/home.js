@@ -1,4 +1,4 @@
-console.log("ok");
+// console.log("ok");
 
 let currentTab="all";
 
@@ -9,7 +9,8 @@ const allContenar=document.getElementById("all-section")
 const openContenar=document.getElementById("open-section")
 const closedContenar=document.getElementById("closed-section")
 
-console.log(allContenar,"--------------",openContenar,closedContenar);
+// console.log(allContenar);
+console.log(allContenar,"--------------",openContenar ,"--------------",closedContenar);
 
 function Tab(tab){
     // console.log(tab);
