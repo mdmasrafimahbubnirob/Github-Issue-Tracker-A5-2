@@ -163,7 +163,7 @@ const displayProblems = (problems) => {
                             label === "documentation" ? `
                             <span
                             class="text-[10px] font-bold px-2 py-1 rounded-full bg-blue-100 text-blue-600 flex items-center gap-1 border-2 border-blue-200 uppercase">
-                            <i class="fa-solid fa-life-ring"></i> ${label}
+                            <i class="fa-solid fa-file-lines"></i> ${label}
                             </span>
                             ` :
 
