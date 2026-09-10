@@ -13,6 +13,9 @@ const closedContenar = document.getElementById("closed-section")
 
 const totalIssues = document.getElementById("total-Issues")
 
+const loadingS = document.getElementById("loading")
+let isloading = true;
+
 console.log(totalIssues);
 // console.log(allContenar,"--------------",openContenar ,"--------------",closedContenar);
 
@@ -58,10 +61,17 @@ Tab(currentTab);
 // document.getElementById("Sign-In-btn").addEventListener("click", function () {})
 
 const fetchProblems = () => {
+
+    // isloading.style.display = false;
+    isloading = true;
+    loadingS.style.display = "flex";
+
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then((res) => res.json())
         .then((data) => {
             displayProblems(data.data);
+            isloading = false;
+            loadingS.style.display = "none";
             // console.log(data.data);
         })
     // return (data.data);
