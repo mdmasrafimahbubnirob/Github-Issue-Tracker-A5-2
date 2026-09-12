@@ -1,6 +1,5 @@
 // console.log("ok");
 
-let currentTab = "all";
 
 const tabActive = ["bg-violet-600", "text-white"];
 const tabInActive = ["bg-white", "text-black", "hover:bg-gray-100"];
@@ -13,14 +12,33 @@ const closedContenar = document.getElementById("closed-section")
 
 const totalIssues = document.getElementById("total-Issues")
 
+// const selectTab = document.getElementById("select")
+
 const loadingS = document.getElementById("loading")
 let isloading = true;
 
-console.log(totalIssues);
+// console.log(totalIssues);
 // console.log(allContenar,"--------------",openContenar ,"--------------",closedContenar);
 
+let currentTab = "all";
+
+// // let TabName;
+// function seletedTab(tabName) {
+    
+//     // console.log(tabName);
+//     if (tabName) {
+//         currentTab = tabName;
+//     }
+//     // console.log(tabName);
+//     // console.log(currentTab);
+//     return currentTab;
+// }
+
+
 function Tab(tab) {
-    // console.log(tab);
+    // console.log();
+    // currentTab = tab;
+    // seletedTab(tab);
 
     const tabs = ["all", "open", "closed"];
 
@@ -37,12 +55,17 @@ function Tab(tab) {
             tabName.classList.add(...tabInActive)
         }
     }
+    // console.log(currentTab);
+
+
 
     const pages = [allContenar, openContenar, closedContenar];
 
     for (const page of pages) {
-        page.classList.add("hidden");
+        // page.classList.add("hidden");
     }
+
+    // seletedTab(tab);
 
     if (tab === "all") {
         allContenar.classList.remove("hidden");
@@ -50,35 +73,102 @@ function Tab(tab) {
     else if (tab === "open") {
         openContenar.classList.remove("hidden");
         // allContenar.classList.add("hidden");
+        // currentTab = "open";
     }
     else {
         closedContenar.classList.remove("hidden");
+        // currentTab = "closed";
     }
 }
 
 Tab(currentTab);
 
+// console.log(currentTab);
+
+
+// seletedTab()
+// console.log(seletedTab());
+
+
+
 // document.getElementById("Sign-In-btn").addEventListener("click", function () {})
 
-const fetchProblems = () => {
+
+
+const fetchProblems = (selecteddTab) => {
+
+    // console.log(seleteddTab);
 
     // isloading.style.display = false;
     isloading = true;
     loadingS.style.display = "flex";
 
+
+
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then((res) => res.json())
         .then((data) => {
+            
+            // console.log(data.data);
+            
+            // data.data.forEach(problem => {
+                //     console.log(problem.status);
+                // })
+
+            if (totalIssues) {
+                totalIssues.innerText = `${data.data.length} Issues`;
+
+                console.log(data.data.length);
+            }
+            
+            if (selecteddTab) {
+
+                if (selecteddTab === "all") {
+                    displayProblems(data.data);
+
+                    if (totalIssues) {
+                        totalIssues.innerText = `${data.data.length} Issues`;
+
+                        console.log(data.data.length);
+                    }
+
+                    isloading = false;
+                    loadingS.style.display = "none";
+                    return;
+                    
+                }
+                const filteredData = data.data.filter(problem => problem.status === selecteddTab);
+
+                if (totalIssues) {
+                    totalIssues.innerText = `${filteredData.length} Issues`;
+
+                    console.log(data.data.length);
+                }
+
+                // console.log(filteredData);
+
+                displayProblems(filteredData);
+                isloading = false;
+                loadingS.style.display = "none";
+                return;
+            }
+            //  else {
+                
+                // }
+
             displayProblems(data.data);
+
             isloading = false;
             loadingS.style.display = "none";
-            // console.log(data.data);
         })
     // return (data.data);
 }
 
 const displayProblems = (problems) => {
-    // console.log(problem);
+
+    allContenar.innerHTML="";
+
+    // console.log(problems);
     problems.forEach(problem => {
         // console.log(problem);
 
@@ -190,7 +280,7 @@ const displayProblems = (problems) => {
                         <p>${new Date(problem.createdAt).toLocaleDateString('en-US')}</p>
                     </div>
 
-                    <div />
+                    </div>
         `;
 
         allContenar.appendChild(card);
@@ -199,6 +289,20 @@ const displayProblems = (problems) => {
     });
 }
 
+// selectTab.addEventListener(("change"), (e)=>{
+//     e.preventDefault();
+//     console.log("change");
+// } )
+
+function TabName(name){
+    // console.log(name);
+    fetchProblems(name);
+}
+
+// console.log(TabName());
+
 fetchProblems();
 
-console.log(fetchProblems());
+// fetchProblems(currentTab);
+
+// console.log(fetchProblems());

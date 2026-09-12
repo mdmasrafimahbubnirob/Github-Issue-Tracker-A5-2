@@ -58,15 +58,15 @@
 
     <main class="max-w-350 mx-auto p-4 md:p-8 ">
 
-        <div class="bg-white border border-gray-300 p-4 rounded-xl mb-6 flex gap-2 shadow-2xl sticky top-26.5 md:top-16 md:bottom-10 left-0 w-full z-50">
+        <div id="select" class="bg-white border border-gray-300 p-4 rounded-xl mb-6 flex gap-2 shadow-2xl sticky top-26.5 md:top-16 md:bottom-10 left-0 w-full z-50">
 
-            <button onclick="Tab('all')" id="tab-all"
+            <button onclick="Tab('all') ; TabName('all')" id="tab-all"
                 class="border border-gray-300 px-6 py-1.5 rounded-md text-sm font-medium hover:bg-gray-100">All</button>
 
-            <button onclick="Tab('open')" id="tab-open"
+            <button onclick="Tab('open') ; TabName('open')" id="tab-open"
                 class="border border-gray-300 px-6 py-1.5 rounded-md text-sm font-medium hover:bg-gray-100">Open</button>
 
-            <button onclick="Tab('closed')" id="tab-closed"
+            <button onclick="Tab('closed') ; TabName('closed')" id="tab-closed"
                 class="border border-gray-300 px-6 py-1.5 rounded-md text-sm font-medium hover:bg-gray-100">Closed</button>
 
         </div>
@@ -75,14 +75,14 @@
 
 
         <div
-            class="bg-white shadow-2xl border border-gray-300 rounded-t-xl p-6 flex flex-wrap justify-between items-center gap-4 sticky top-43 md:top-31 left-0 w-full z-50">
+            class="bg-white  border border-gray-300 rounded-t-xl p-6 flex flex-wrap justify-between items-center gap-4 sticky top-43 md:top-31 left-0 w-full z-50">
             <div class="flex items-center gap-4">
                 <div class="w-13 h-13 bg-purple-100 rounded-full flex items-center justify-center text-[#5814ff]">
                     <img src="./assets/Aperture.png" alt="" srcset="">
                 </div>
 
                 <div>
-                    <h2 id="total-Issues" class="text-xl font-bold text-black">0 Issues</h2>
+                    <h2 id="total-Issues" class="text-xl font-bold text-black"></h2>
                     <p class="text-sm text-gray-500">Track and manage your project issues</p>
                 </div>
             </div>
@@ -97,7 +97,7 @@
 
 
 
-        <div id="loading" class="border-x border-gray-300 items-center justify-center flex py-10 ">
+        <div id="loading" class="border-x border-gray-300 items-center justify-center flex py-10 bg-white">
             <span class="loading loading-spinner loading-xl"></span>
         </div>
 
@@ -120,7 +120,7 @@
             <!-- open-section -->
 
             <div id="open-section" class=" ">
-                <h1>open</h1>
+                <!-- <h1>open</h1> -->
 
 
 
@@ -130,7 +130,7 @@
             <!-- closed-section -->
 
             <div id="closed-section" class="">
-                <h1>closed</h1>
+                <!-- <h1>closed</h1> -->
             </div>
 
         </div>
